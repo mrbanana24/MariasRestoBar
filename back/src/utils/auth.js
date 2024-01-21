@@ -5,4 +5,6 @@ const generateAuthToken = (userId) => {
   return token;
 };
 
-module.exports = generateAuthToken;
+module.exports = {
+  generateAuthToken,
+};

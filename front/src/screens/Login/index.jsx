@@ -8,8 +8,8 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// usar axios para hacer peticiones al backend
-import axios from "axios";
+import { loginUser } from "../../api/routes";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -18,12 +18,16 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const password = data.get("password");
+    const nombre = data.get("nombre");
+    const navigate = useNavigate();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/login", { password: password });
-      console.log(response);
+      const response = await loginUser(nombre, password);
       if (response.data.status == "ok") {
-        console.log("Clave correcta");
+        // Guardar token en localstorage
+        localStorage.setItem("token", response.data.token);
+        // Redireccionar al home usando react router dom
+        navigate("/");
       } else {
         alert("Clave incorrecta");
       }
@@ -66,6 +70,16 @@ export default function SignInSide() {
               Sign in
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="nombre"
+                label="user"
+                type="nombre"
+                id="nombre"
+                autoComplete="current-nombre"
+              />
               <TextField
                 margin="normal"
                 required

@@ -1,20 +1,20 @@
 const User = require('../models/user.js');
 const { generateAuthToken } = require('../utils/auth.js');
-
+const bcrypt = require('bcryptjs');
 class AuthService {
-  static async login(clave) {
+  static async login(nombre, password) {
     try {
       // Buscar el usuario en la base de datos
-      const user = await User.findOne({ clave });
+      const user = await User.findOne({ nombre });
+      console.log('ESTO ES USER',user)
       if (!user) {
         throw new Error('Usuario no encontrado');
       }
-      // Verificar la contraseña
-      const isPasswordValid = await user.comparePassword(clave);
-      if (!isPasswordValid) {
-        throw new Error('Contraseña incorrecta');
-      }
 
+      if(password !== user.password){
+        throw new Error('Contraseña incorrecta');
+
+      }
       // Si todo es correcto, puedes retornar un token de autenticación
       const token = generateAuthToken(user);
 

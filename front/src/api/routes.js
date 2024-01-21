@@ -1,13 +1,10 @@
 import axios from 'axios';
 
-const loginUser = async (password) => {
+export const loginUser = async (nombre, password) => {
   try{
-    const response = await axios.post('http://localhost:8000/login', {password});
+    const response = await axios.post('http://localhost:8000/login', {nombre, password});
     return response;
   }catch(error){
     console.log(error);
   }
-
 };
-
-export default loginUser;
