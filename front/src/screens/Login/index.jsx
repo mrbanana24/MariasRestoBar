@@ -14,15 +14,19 @@ import { useNavigate } from "react-router-dom";
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
+  const navigate = useNavigate();
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const password = data.get("password");
     const nombre = data.get("nombre");
-    const navigate = useNavigate();
 
     try {
+      console.log("mando a llamar al api");
       const response = await loginUser(nombre, password);
+      console.log("response", response)
+
       if (response.data.status == "ok") {
         // Guardar token en localstorage
         localStorage.setItem("token", response.data.token);
