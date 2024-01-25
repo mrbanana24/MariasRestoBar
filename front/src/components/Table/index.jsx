@@ -2,7 +2,7 @@ import { Paper, Grid, TextField, Button, FormControl, InputLabel, Select, MenuIt
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const MiComponente = () => {
+const Table = () => {
   const date = new Date();
   const today = date.toISOString().split('T')[0];
 
@@ -13,7 +13,7 @@ const MiComponente = () => {
                     .max(100, 'El número de mesa no puede ser mayor a 100'),
     monto: Yup.number().required('Campo requerido'),
     estadoPago: Yup.string().required('Campo requerido'),
-    propina: Yup.number().required('Campo requerido'),
+    propina: Yup.number()
   });
 
   const formik = useFormik({
@@ -99,4 +99,4 @@ const MiComponente = () => {
   );
 };
 
-export default MiComponente;
+export default Table;

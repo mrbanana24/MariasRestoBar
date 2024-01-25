@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-let rolesValidos = {
-  values: ['ADMIN_ROLE', 'USER_ROLE'],
-  message: '{VALUE} no es un rol válido'
-}
-
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({

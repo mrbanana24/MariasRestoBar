@@ -1,6 +1,5 @@
 const User = require('../models/user.js');
 const { generateAuthToken } = require('../utils/auth.js');
-const bcrypt = require('bcryptjs');
 class AuthService {
   static async login(nombre, password) {
     try {
