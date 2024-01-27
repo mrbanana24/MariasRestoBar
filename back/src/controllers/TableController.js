@@ -1,4 +1,4 @@
-const TableService = require('../services/TableServices');
+const TableService = require('../services/TableService');
 
 class TableController {
     static async saveIndividualDataTable(req, res) {
