@@ -11,11 +11,21 @@ class TableService {
         });
 
         const tableSaved = await table.save();
-        return tableSaved;
+            return tableSaved;
         } catch (error) {
-        throw error;
+            throw error;
         }
     }
+
+    static async getAllTables() {
+        try {
+            const tables = await Table.find();
+            return tables;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 module.exports = TableService;

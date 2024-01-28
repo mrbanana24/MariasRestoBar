@@ -19,3 +19,13 @@ export const saveIndividualDataTable = async (numMesa, monto, estadoPago, propin
     console.log(error);
   }
 };
+
+// Get all tables
+export const getAllTables = async () => {
+  try{
+    const response = await axios.get('http://localhost:8000/getAllTables');
+    return response;
+  }catch(error){
+    console.log(error);
+  }
+};

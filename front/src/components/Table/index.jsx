@@ -51,7 +51,7 @@ const Table = () => {
               onBlur={formik.handleBlur}
               value={formik.values.numeroMesa}
               error={formik.touched.numeroMesa && Boolean(formik.errors.numeroMesa)}
-              helperText={formik.touched.numeroMesa && formik.errors.numeroMesa}
+              helpertext={formik.touched.numeroMesa && formik.errors.numeroMesa}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -63,7 +63,7 @@ const Table = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.monto && Boolean(formik.errors.monto)}
-              helperText={formik.touched.monto && formik.errors.monto}
+              helpertext={formik.touched.monto && formik.errors.monto}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -76,7 +76,7 @@ const Table = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.estadoPago && Boolean(formik.errors.estadoPago)}
-                helperText={formik.touched.estadoPago && formik.errors.estadoPago}
+                helpertext={formik.touched.estadoPago && formik.errors.estadoPago}
               >
                 <MenuItem value="Efectivo">Efectivo</MenuItem>
                 <MenuItem value="Tarjeta">Tarjeta</MenuItem>
@@ -93,7 +93,7 @@ const Table = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.propina && Boolean(formik.errors.propina)}
-              helperText={formik.touched.propina && formik.errors.propina}
+              helpertext={formik.touched.propina && formik.errors.propina}
             />
           </Grid>
           <Grid item xs={12} sm={2}>

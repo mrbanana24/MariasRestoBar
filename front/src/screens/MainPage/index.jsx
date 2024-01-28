@@ -2,20 +2,26 @@ import Table from '../../components/Table';
 import Header from '../../components/Header'
 import {Grid, Box} from '@mui/material';
 import DisplayTables from '../../components/DisplayTables';
-
+import {useEffect, useState} from 'react';
+import {getAllTables} from '../../api/routes';
 
 const MainPage = () => {
+  const [allTables, setTables] = useState([]);
+  
+  useEffect(() => {
+    const fetchTables = async () => {
+      try {
+        const response = await getAllTables();
+        if(response.status == 200){
+          setTables(response.data.tables);
+        }
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    };
 
-  let tables = [
-    {
-        name: "Table 1",
-        status: "Free"
-    },
-    {
-        name: "Table 2",
-        status: "Free"
-    }
-  ]
+    fetchTables();
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -24,7 +30,7 @@ const MainPage = () => {
         {/* First part of screen*/}
         <Grid item xs={8} sx={{backgroundColor: 'red'}}>
           <Table/>
-          <DisplayTables tables={tables}/>
+          <DisplayTables tables={allTables}/>
         </Grid>
         {/* Second part of screen*/}
         <Grid item xs={4} sx={{backgroundColor: 'green'}}>

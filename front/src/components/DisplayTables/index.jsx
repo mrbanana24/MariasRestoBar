@@ -1,4 +1,4 @@
-import {Box, Grid, Paper, Typography} from '@mui/material';
+import {Grid, Paper, Typography} from '@mui/material';
 
 
 const DisplayTables = ({tables}) => {
@@ -13,14 +13,12 @@ const DisplayTables = ({tables}) => {
 
     return (
         <Grid container>          
-            {tables.map((table, index) => (               
+            {tables?.map((table, index) => (
                 <Paper key={index} elevation={3} style={stylePaper}>
-                    <Typography variant="h5" component="h2">
-                        {table.name}
-                    </Typography>
-                    <Typography variant="h6" component="h2">
-                        {table.status}
-                    </Typography>
+                    <Typography variant="h6">{table.numMesa}</Typography>
+                    <Typography variant="h6">{table.monto}</Typography>
+                    <Typography variant="h6">{table.propina}</Typography>
+                    <Typography variant="h6">{table.estadoPago}</Typography>
                 </Paper>
             ))}
         </Grid>

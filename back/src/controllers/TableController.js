@@ -1,6 +1,7 @@
 const TableService = require('../services/TableService');
 
 class TableController {
+
     static async saveIndividualDataTable(req, res) {
         try {
             const {numMesa, monto, estadoPago, propina} = req.body;
@@ -15,6 +16,16 @@ class TableController {
             res.status(400).json({ error: error.message });
         }
     }
+
+    static async getAllTables(req, res) {
+        try {
+            const tables = await TableService.getAllTables();
+            res.status(200).json({ status: 'ok', tables });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+
 }
 
 module.exports = TableController;

@@ -10,5 +10,7 @@ router.post('/login', AuthController.login )
 // saveIndividualDataTable
 router.post('/saveIndividualDataTable', TableController.saveIndividualDataTable )
 
+// getAllTables
+router.get('/getAllTables', TableController.getAllTables )
 
 module.exports = router;
