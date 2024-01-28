@@ -11,9 +11,9 @@ export const loginUser = async (nombre, password) => {
 };
 
 // Post individual data table
-export const saveIndividualDataTable = async (data) => {
+export const saveIndividualDataTable = async (numMesa, monto, estadoPago, propina) => {
   try{
-    const response = await axios.post('http://localhost:8000/saveIndividualDataTable', data);
+    const response = await axios.post('http://localhost:8000/saveIndividualDataTable', {numMesa, monto, estadoPago, propina});
     return response;
   }catch(error){
     console.log(error);

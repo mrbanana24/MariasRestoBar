@@ -1,6 +1,9 @@
 import { Paper, Grid, TextField, Button, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
+import {saveIndividualDataTable} from '../../api/routes'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+
 
 const Table = () => {
   const date = new Date();
@@ -24,8 +27,14 @@ const Table = () => {
       propina: '',
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      console.log({values});
+    onSubmit: async (values) => {
+      console.log(values);
+      try {
+        const response = await saveIndividualDataTable(values.numeroMesa, values.monto, values.estadoPago, values.propina);
+        console.log('Esto es response', response);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
