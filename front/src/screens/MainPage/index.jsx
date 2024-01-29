@@ -23,13 +23,18 @@ const MainPage = () => {
     fetchTables();
   }, []);
 
+  // Esto funciona, porque cuando se actualiza la lista de tables, se vuelve a renderizar el componente DisplayTables
+  const addTable = (newTable) => {
+    setTables(prevTables => [...prevTables, newTable]);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Header/>
       <Grid container>
         {/* First part of screen*/}
         <Grid item xs={8} sx={{backgroundColor: 'red'}}>
-          <Table/>
+          <Table onAddTable={addTable}/>
           <DisplayTables tables={allTables}/>
         </Grid>
         {/* Second part of screen*/}
