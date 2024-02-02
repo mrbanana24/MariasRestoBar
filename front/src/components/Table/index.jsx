@@ -7,6 +7,20 @@ const Table = ({onAddTable}) => {
   const date = new Date();
   const today = date.toISOString().split('T')[0];
 
+  const style ={
+    stylePaper: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      height: '100%',
+      width: '90%',
+      padding: '1%',
+      margin: 'auto',
+      textAlign: 'center',
+      marginTop: '1%',
+      marginBottom: '1%',
+    }
+  }
+
   const formSchema = Yup.object().shape({
     numeroMesa: Yup.number()
                     .typeError('El número de mesa debe ser un número entero')
@@ -40,7 +54,7 @@ const Table = ({onAddTable}) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-        <Paper style={{ padding: '16px', margin: '16px 0' }}>
+        <Paper style={style.stylePaper}>
         <Grid container alignItems="center" spacing={2}>
           <Grid item xs={12} sm={2}>
             <TextField

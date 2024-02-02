@@ -19,7 +19,6 @@ const DisplayTables = ({tables}) => {
       gridItem: {
         color: 'grey'
       }
-      
     }
 
     return (
