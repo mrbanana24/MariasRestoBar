@@ -1,9 +1,10 @@
-import Table from '../../components/Table';
-import Header from '../../components/Header'
 import {Grid, Box} from '@mui/material';
-import DisplayTables from '../../components/DisplayTables';
 import {useEffect, useState} from 'react';
 import {getAllTables} from '../../api/routes';
+import Header from '../../components/Header'
+import Table from '../../components/Table';
+import DisplayTables from '../../components/DisplayTables';
+import ComentsContainer from '../../components/ComentsContainer';
 
 const MainPage = () => {
   const [allTables, setTables] = useState([]);
@@ -31,7 +32,7 @@ const MainPage = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Header/>
-      <Grid container>
+      <Grid container sx={{minHeight: "100vh"}}>
         {/* First part of screen*/}
         <Grid item xs={8} sx={{backgroundColor: 'red'}}>
           <Table onAddTable={addTable}/>
@@ -39,7 +40,7 @@ const MainPage = () => {
         </Grid>
         {/* Second part of screen*/}
         <Grid item xs={4} sx={{backgroundColor: 'green'}}>
-          <h1> second part of screen</h1>
+          <ComentsContainer/>
         </Grid>
       </Grid>
     </Box>
