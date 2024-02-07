@@ -1,5 +1,5 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { Grid, Paper, TextField, Typography, Button} from "@mui/material";
+import {useState } from "react";
 
 const style = {
   container: {
@@ -13,30 +13,41 @@ const style = {
     height: '80%',
     width: '70%',
   },
-  boxComentAndButton: {
-    display: 'flex',
-    width: '100%',
-  },
   title: {
     margin: 'auto',
     color : 'black',
   },
-  addButton: {
+  
+  button: {
     margin: 'auto',
-    border: "4px solid 'purple'",
-  }
+    marginTop: '1%',
+    marginBottom: '2%',
+    backgroundColor: 'green',
+    color: 'white',
+    width: '50%',
+    display: 'block', 
+  },
+
 }
 
-
 const ComentsContainer = () => {
+
+  const [coments, setComents] = useState([]);
+
+  // TODO: Migrarlo a formik
   return (
       <Grid container style={style.container}>
-        <Grid item style={style.boxComentAndButton}>
           <Typography variant="h4" style={style.title}>Comentarios</Typography>
-          <AddCircleOutlineIcon onClick={()=> console.log('callFunction')} style={style.addButton}/>
-        </Grid>
         <Paper elevation={3} style={style.cardStyle}>
-          
+          <Button variant="contained" type='submit' style={style.button}>Agregar</Button>
+            <TextField
+              id="outlined-multiline-static"
+              label="Comentarios"
+              multiline
+              defaultValue=""
+              variant="outlined"
+              fullWidth
+            />
         </Paper>
       </Grid>
   )
