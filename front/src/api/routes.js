@@ -29,3 +29,13 @@ export const getAllTables = async () => {
     console.log(error);
   }
 };
+
+// Save coment
+export const saveComment = async (fecha, comentarios) => {
+  try{
+    const response = await axios.post('http://localhost:8000/saveComent', {fecha, comentarios});
+    return response;
+  }catch(error){
+    console.log(error);
+  }
+}
