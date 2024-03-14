@@ -1,6 +1,8 @@
 import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
 import { useFormik } from "formik";
 import { saveComment } from "../../api/routes";
+import CustomizedSnackbars  from "../../components/Snackbar";
+import {useState} from "react";
 
 const style = {
   container: {
@@ -33,17 +35,20 @@ const style = {
 const ComentsContainer = () => {
   const date = new Date();
   const today = date.toISOString().split("T")[0];
+  let [open, setOpen] = useState(false);
+
 
   const formik = useFormik({
     initialValues: {
       coments: "",
+      today: today,
     },
     onSubmit: async (values) => {
       console.log("estoy enviando esto en los comments", values, today);
       try {
         const response = await saveComment(today, values.coments);
         if (response.status === 200) {
-          console.log("comentario guardado");
+          setOpen(true);
         }
       } catch (error) {
         console.log(error);
@@ -53,6 +58,7 @@ const ComentsContainer = () => {
 
   return (
     <form onSubmit={formik.handleSubmit} style={style.container}>
+      <CustomizedSnackbars open={open} message="Comentario guardado" handleClose={() => setOpen(false)} />
       <Grid container>
         <Typography variant="h4" style={style.title}>
           Comentarios
