@@ -1,33 +1,47 @@
 import { Grid, Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAllTables } from "../../api/routes";
+import { getAllTables, getAllComments } from "../../api/routes";
 import Header from "../../components/Header";
 import Table from "../../components/Table";
 import DisplayTables from "../../components/DisplayTables";
 import ComentsContainer from "../../components/ComentsContainer";
+import DisplayComments from "../../components/DisplayComments";
 
 const MainPage = () => {
   const [allTables, setTables] = useState([]);
+  const [allComments, setComments] = useState([]);
+
 
   useEffect(() => {
-    const fetchTables = async () => {
+    const fetchTablesAndComments = async () => {
       try {
-        const response = await getAllTables();
-        if (response.status == 200) {
-          setTables(response.data.tables);
+        const responseTables = await getAllTables();
+        const responseComments = await getAllComments();
+
+        // TODO: modularizar esto en una funcion de chequeo de errores
+        if (responseTables.status == 200) {
+          setTables(responseTables.data.tables);
         }
+        if (responseComments.status == 200) {
+          setComments(responseComments.data.comments);
+        }
+        
       } catch (error) {
         console.log("Error:", error);
       }
     };
 
-    fetchTables();
+    fetchTablesAndComments();
   }, []);
 
   // Esto funciona, porque cuando se actualiza la lista de tables, se vuelve a renderizar el componente DisplayTables
   const addTable = (newTable) => {
     setTables((prevTables) => [...prevTables, newTable]);
   };
+
+  const addComment = (newComment) => {
+    setComments((prevComments) => [...prevComments, newComment]);
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -42,7 +56,8 @@ const MainPage = () => {
         {/* Second part of screen*/}
         <Grid item xs={4} sx={{ backgroundColor: "green" }}>
           {/* Contenedor de comentarios */}
-          <ComentsContainer />
+          <ComentsContainer onAddComment={addComment} />
+          <DisplayComments comments={allComments} />
         </Grid>
       </Grid>
     </Box>

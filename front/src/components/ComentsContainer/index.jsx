@@ -7,8 +7,8 @@ import {useState} from "react";
 const style = {
   container: {
     display: "flex",
-    height: "80%",
-    border: "1px solid black",
+    height: "30%",
+    flexDirection: "column",
   },
   cardStyle: {
     margin: "auto",
@@ -32,7 +32,7 @@ const style = {
   },
 };
 
-const ComentsContainer = () => {
+const ComentsContainer = ({onAddComment}) => {
   const date = new Date();
   const today = date.toISOString().split("T")[0];
   let [open, setOpen] = useState(false);
@@ -49,6 +49,7 @@ const ComentsContainer = () => {
         const response = await saveComment(today, values.coments);
         if (response.status === 200) {
           setOpen(true);
+          onAddComment(response.data.comentSaved.comentarios[0]); // Llama a onAddTable con la nueva mesa
         }
       } catch (error) {
         console.log(error);
@@ -57,9 +58,9 @@ const ComentsContainer = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} style={style.container}>
+    <form onSubmit={formik.handleSubmit}>
       <CustomizedSnackbars open={open} message="Comentario guardado" handleClose={() => setOpen(false)} />
-      <Grid container>
+      <Grid container style={style.container}> 
         <Typography variant="h4" style={style.title}>
           Comentarios
         </Typography>
@@ -76,6 +77,8 @@ const ComentsContainer = () => {
             fullWidth
             onChange={formik.handleChange}
             value={formik.values.coments}
+            // maximo de alto es 7 lineas
+            maxRows={7}
           />
         </Paper>
       </Grid>

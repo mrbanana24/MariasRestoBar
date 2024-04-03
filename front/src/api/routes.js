@@ -6,7 +6,7 @@ export const loginUser = async (nombre, password) => {
     const response = await axios.post('http://localhost:8000/login', {nombre, password});
     return response;
   }catch(error){
-    console.log(error);
+    throw error;
   }
 };
 
@@ -16,7 +16,7 @@ export const saveIndividualDataTable = async (numMesa, monto, estadoPago, propin
     const response = await axios.post('http://localhost:8000/saveIndividualDataTable', {numMesa, monto, estadoPago, propina});
     return response;
   }catch(error){
-    console.log(error);
+    throw error;
   }
 };
 
@@ -26,7 +26,7 @@ export const getAllTables = async () => {
     const response = await axios.get('http://localhost:8000/getAllTables');
     return response;
   }catch(error){
-    console.log(error);
+    throw error;
   }
 };
 
@@ -36,6 +36,16 @@ export const saveComment = async (fecha, comentarios) => {
     const response = await axios.post('http://localhost:8000/saveComent', {fecha, comentarios});
     return response;
   }catch(error){
-    console.log(error);
+    throw error;
   }
 }
+
+// Get all comments
+export const getAllComments = async () => {
+  try{
+    const response = await axios.get('http://localhost:8000/getAllComments');
+    return response;
+  }catch{
+    throw error;
+  }
+};
