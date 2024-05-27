@@ -20,6 +20,10 @@ let tableSchema = new Schema({
         type: Number,
         default: 0
     },
+    fecha: {
+        type: Date,
+        required: [true, 'La fecha es obligatoria']
+    }
 });
 
 module.exports = mongoose.model('Table', tableSchema);

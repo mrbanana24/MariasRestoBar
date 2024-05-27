@@ -6,9 +6,13 @@ let dailyCommentSchema = new Schema({
         type: Date,
         required: [true, 'La fecha es obligatoria']
     },
-    comentarios: [{
+    comentarios: {
         type: String
-    }]
+    },
+    gasto: {
+        type: Number,
+        required: [true, 'El gasto es obligatorio']
+    }
 });
 
 module.exports = mongoose.model('DailyComment', dailyCommentSchema);

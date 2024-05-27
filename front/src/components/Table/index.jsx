@@ -3,9 +3,7 @@ import { saveIndividualDataTable } from "../../api/routes";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const Table = ({ onAddTable }) => {
-  const date = new Date();
-  const today = date.toISOString().split("T")[0];
+const Table = ({ onAddTable, today }) => {
 
   const style = {
     stylePaper: {
@@ -37,19 +35,21 @@ const Table = ({ onAddTable }) => {
       monto: "",
       estadoPago: "",
       propina: "",
+      today: today,
     },
     validationSchema: formSchema,
     onSubmit: async (values) => {
-      console.log(values);
       try {
         const response = await saveIndividualDataTable(
           values.numeroMesa,
           values.monto,
           values.estadoPago,
-          values.propina
+          values.propina,
+          values.today
         );
         if (response.status === 200) {
           onAddTable(response.data.tableSaved); // Llama a onAddTable con la nueva mesa
+          formik.resetForm();
         }
       } catch (error) {
         console.log(error);

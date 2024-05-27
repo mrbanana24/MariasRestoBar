@@ -1,8 +1,8 @@
 import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
 import { useFormik } from "formik";
 import { saveComment } from "../../api/routes";
-import CustomizedSnackbars  from "../../components/Snackbar";
 import {useState} from "react";
+import CustomizedSnackbars  from "../../components/Snackbar";
 
 const style = {
   container: {
@@ -32,24 +32,25 @@ const style = {
   },
 };
 
-const ComentsContainer = ({onAddComment}) => {
-  const date = new Date();
-  const today = date.toISOString().split("T")[0];
+const ComentsContainer = ({onAddComment, today}) => {
   let [open, setOpen] = useState(false);
-
 
   const formik = useFormik({
     initialValues: {
       coments: "",
+      gasto: 0,
       today: today,
     },
     onSubmit: async (values) => {
-      console.log("estoy enviando esto en los comments", values, today);
       try {
-        const response = await saveComment(today, values.coments);
+        const response = await saveComment(today, values.coments, values.gasto);
         if (response.status === 200) {
+          // Limpio el input
+          formik.resetForm();
+          // Muestro el snackbar
           setOpen(true);
-          onAddComment(response.data.comentSaved.comentarios[0]); // Llama a onAddTable con la nueva mesa
+          // Llamo a onAddComment con el nuevo comentario
+          onAddComment(response.data.comentSaved); 
         }
       } catch (error) {
         console.log(error);
@@ -68,18 +69,37 @@ const ComentsContainer = ({onAddComment}) => {
           <Button variant="contained" type="submit" style={style.button}>
             Agregar
           </Button>
-          <TextField
-            name="coments"
-            id="outlined-multiline-static"
-            label="Comentarios"
-            multiline
-            variant="outlined"
-            fullWidth
-            onChange={formik.handleChange}
-            value={formik.values.coments}
-            // maximo de alto es 7 lineas
-            maxRows={7}
-          />
+          <Grid item>
+            {/* Input para texto */}
+            <TextField
+              name="coments"
+              id="outlined-multiline-static"
+              label="Comentarios"
+              multiline
+              variant="outlined"
+              fullWidth
+              onChange={formik.handleChange}
+              value={formik.values.coments}
+              // maximo de alto es 7 lineas
+              maxRows={7}
+              // Maximo de caracteres
+              inputProps={{ maxLength: 50 }}
+            />
+          </Grid>
+          <Grid item>
+            {/* Input para el gasto */}
+            <TextField
+              name="gasto"
+              id="outlined-number"
+              label="Gasto"
+              type="number"
+              variant="outlined"
+              fullWidth
+              onChange={formik.handleChange}
+              value={formik.values.gasto}
+              defaultValue={0}
+            />
+          </Grid>
         </Paper>
       </Grid>
     </form>

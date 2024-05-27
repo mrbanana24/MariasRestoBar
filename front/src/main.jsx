@@ -7,6 +7,8 @@ import Eror from "./screens/ErrorPage";
 import MainPage from "./screens/MainPage";
 import SummaryDays from "./screens/SummaryDays";
 import SummaryMonths from "./screens/SummaryMonths";
+import theme from './GlobalTheme';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 
 
 const router = createBrowserRouter([
@@ -30,8 +32,12 @@ const router = createBrowserRouter([
   }, 
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />{" "}
+    <ThemeProvider theme={theme}>
+      <CssBaseline /> {/* Agrega CssBaseline para un estilo base y consistente */}
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

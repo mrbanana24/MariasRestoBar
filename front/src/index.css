@@ -1,0 +1,40 @@
+:root {
+  /* Colores base */
+  --color-fondo-principal: #F5F5F5;
+  --color-tarjetas: #AAA;
+  --color-texto-principal: #333333;
+  --color-accion: #007BFF;
+  --color-accion-resaltado: #0056b3;
+  --color-error: #E57373;
+  --color-exito: #81C784;
+}
+
+/* Uso en la aplicación */
+body {
+  background-color: var(--color-fondo-principal);
+}
+
+.card, .paper {
+  background-color: var(--color-tarjetas);
+}
+
+.texto {
+  color: var(--color-texto-principal);
+}
+
+.boton-accion {
+  background-color: var(--color-accion);
+  border-color: var(--color-accion-resaltado);
+}
+
+.boton-accion:hover {
+  background-color: var(--color-accion-resaltado);
+}
+
+.mensaje-error {
+  color: var(--color-error);
+}
+
+.mensaje-exito {
+  color: var(--color-exito);
+}

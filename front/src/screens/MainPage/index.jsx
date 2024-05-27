@@ -1,6 +1,6 @@
 import { Grid, Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAllTables, getAllComments } from "../../api/routes";
+import { getTablesByDate, getCommentsByDate } from "../../api/routes";
 import Header from "../../components/Header";
 import Table from "../../components/Table";
 import DisplayTables from "../../components/DisplayTables";
@@ -11,19 +11,21 @@ const MainPage = () => {
   const [allTables, setTables] = useState([]);
   const [allComments, setComments] = useState([]);
 
+  // date = today
+  const date = new Date();
+  const today = date.toISOString().split("T")[0];
 
   useEffect(() => {
     const fetchTablesAndComments = async () => {
       try {
-        const responseTables = await getAllTables();
-        const responseComments = await getAllComments();
-
-        // TODO: modularizar esto en una funcion de chequeo de errores
+        const responseComments = await getCommentsByDate(today);
+        const responseTables = await getTablesByDate(today);
+        
         if (responseTables.status == 200) {
           setTables(responseTables.data.tables);
         }
         if (responseComments.status == 200) {
-          setComments(responseComments.data.comments);
+          setComments(responseComments.data.coments);
         }
         
       } catch (error) {
@@ -42,23 +44,28 @@ const MainPage = () => {
   const addComment = (newComment) => {
     setComments((prevComments) => [...prevComments, newComment]);
   }
-
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Header />
       <Grid container sx={{ minHeight: "100vh" }}>
+        
         {/* First part of screen*/}
-        <Grid item xs={8} sx={{ backgroundColor: "red" }}>
+        <Grid item xs={8}>
           {/* Tabla para agregar mesas y las mesas listadas */}
-          <Table onAddTable={addTable} />
-          <DisplayTables tables={allTables} />
+          <Table onAddTable={addTable} today={today}/>
+          <DisplayTables tables={allTables} setTables={setTables} />
         </Grid>
+
         {/* Second part of screen*/}
-        <Grid item xs={4} sx={{ backgroundColor: "green" }}>
+        <Grid item xs={4}>
           {/* Contenedor de comentarios */}
-          <ComentsContainer onAddComment={addComment} />
-          <DisplayComments comments={allComments} />
+          <ComentsContainer onAddComment={addComment} today={today}/>
+          {/* Espacio entre componentes */}
+          <Box sx={{ height: "2%" }} />
+          <DisplayComments comments={allComments} setComments={setComments} />
         </Grid>
+
       </Grid>
     </Box>
   );

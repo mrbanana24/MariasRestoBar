@@ -1,7 +1,10 @@
-const express = require('express');
-const app = express();
+const { SummaryDay } = require('./src/models/SummaryDay');
+
 const morgan=require('morgan');
+const express = require('express');
 const cors = require('cors');
+const cron = require('node-cron');
+const app = express();
 
 app.use(express.json());
 
@@ -28,3 +31,24 @@ app.use(require('./src/routes/index'));
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
 });
+
+// tarea programada
+cron.schedule('0 8 * * *', async () => {
+    const newSummaryDay = new SummaryDay({
+        fecha: new Date(),
+        turnoManiana: {},
+        turnoNoche: {},
+        resumenDelDia: {}
+    });
+
+    try {
+        await newSummaryDay.save();
+        console.log('Nuevo summaryDay creado para el día:', new Date());
+    } catch (error) {
+        console.error('Error al crear summaryDay:', error);
+    }
+}, {
+    scheduled: true,
+    timezone: 'America/Argentina/Buenos_Aires'
+});
+
