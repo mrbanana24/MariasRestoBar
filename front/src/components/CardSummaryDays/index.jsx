@@ -24,9 +24,10 @@ const style = {
   },
   section: {
     margin: "10px 0",
-    backgroundColor: "#43e",
+    backgroundColor: "#008aa2",
     color: "#fff", 
-    padding: "10px",
+    padding: "5px",
+    borderRadius: "100px"
   },
   dataRow: {
     display: 'flex',
