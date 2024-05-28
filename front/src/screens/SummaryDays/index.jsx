@@ -4,10 +4,11 @@ import CardSummaryDaysVales from '../../components/CardSummaryDaysVales';
 import Header from '../../components/Header'
 import { Box, Grid } from "@mui/material";
 
-import {summaryDayByDate} from '../../api/routes';
+import {summaryDayByDate, getCommentsByDate} from '../../api/routes';
 
 const SummaryDays = () => {
     const [data, setData] = useState(null);
+    const [dataVales, setDataVales] = useState([]);
 
     // date = today
     const date = new Date();
@@ -20,11 +21,26 @@ const SummaryDays = () => {
                 if(response.status === 200) {
                     setData(response.data);
                 }
-            } catch (error) {
+            }
+            catch (error) {
                 console.error(error);
             }
         }
+
+        const fetchDataVales = async () => {
+            try {
+                const response = await getCommentsByDate(today);
+                if(response.status === 200) {
+                    setDataVales(response.data.coments);
+                }
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
         fetchData();
+        fetchDataVales();
     }, [])
 
     return (
@@ -32,7 +48,7 @@ const SummaryDays = () => {
             <Header />
             <Grid container sx={{ minHeight: "100vh" }}>
                 <CardSummaryDays data={data}/>
-                <CardSummaryDaysVales/>
+                <CardSummaryDaysVales data={dataVales}/>
             </Grid>
         </Box>
       );
