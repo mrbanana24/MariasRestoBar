@@ -51,4 +51,9 @@ router.get('/getSummaryDayByDate', SummaryDaysController.getSummaryDayByDate )
 
 // putSummaryDay
 router.put('/putSummaryDay', SummaryDaysController.putSummaryDay )
-  
+
+// saveCaja
+router.post('/saveCaja', SummaryDaysController.saveCaja )
+
+// getCajaValue
+router.get('/getCajaValue', SummaryDaysController.getCajaValue )

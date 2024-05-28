@@ -97,10 +97,68 @@ class SummaryDaysServices {
         );
 
         return updatedSummary;
-    } catch (error) {
-        throw error;
+        } catch (error) {
+            throw error;
+        }
     }
-}
+
+    static async saveCaja (montoCaja) {
+        try {
+            const date = new Date();
+            const startDate = new Date(date);
+            startDate.setHours(8, 0, 0, 0); // Inicio del día laboral
+            const endDate = new Date(date);
+            endDate.setDate(endDate.getDate() + 1);
+            endDate.setHours(7, 0, 0, 0); // Fin del día laboral, incluyendo turno noche
+    
+            let summary = await SummaryDay.findOne({
+                fecha: {
+                    $gte: startDate,
+                    $lte: endDate
+                }
+            });
+    
+            if (!summary) {
+                // Si no existe, crear un nuevo documento
+                summary = new SummaryDay({
+                    fecha: new Date(),
+                    montoCaja: montoCaja
+                });
+            } else {
+                // Si existe, actualizar montoCaja
+                summary.montoCaja = montoCaja;
+            }
+    
+            await summary.save();
+    
+            return summary;
+        } catch (error) {
+            throw error;
+        }
+    }
+    
+    static async getCajaValue() {
+        try {
+            const date = new Date();
+            const startDate = new Date(date);
+            startDate.setHours(8, 0, 0, 0); // Inicio del día laboral
+            const endDate = new Date(date);
+            endDate.setDate(endDate.getDate() + 1);
+            endDate.setHours(7, 0, 0, 0); // Fin del día laboral, incluyendo turno noche
+    
+            const summary = await SummaryDay.findOne({
+                fecha: {
+                    $gte: startDate,
+                    $lte: endDate
+                }
+            });
+    
+            return summary ? summary.montoCaja : 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 

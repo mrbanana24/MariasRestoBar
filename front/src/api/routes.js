@@ -127,3 +127,24 @@ export const editComent = async (commentId, comentarios, gasto) => {
 }
 
 // /-------------------------------------///////////////-------------------------------------/
+
+// /-------------------------------------/ ROUTES CAJA /-------------------------------------/
+// Save caja
+export const saveCaja = async (montoCaja) => {
+  try{
+    const response = await axios.post('http://localhost:8000/saveCaja', {montoCaja});
+    return response;
+  }catch(error){
+    throw error;
+  }
+}
+
+// Get caja value
+export const getCajaValue = async () => {
+  try{
+    const response = await axios.get('http://localhost:8000/getCajaValue');
+    return response;
+  }catch(error){
+    throw error;
+  }
+};

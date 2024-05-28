@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { saveComment } from "../../api/routes";
 import {useState} from "react";
 import CustomizedSnackbars  from "../../components/Snackbar";
+import CardCaja from "../CardCaja";
 
 const style = {
   container: {
@@ -60,6 +61,7 @@ const ComentsContainer = ({onAddComment, today}) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      <CardCaja />
       <CustomizedSnackbars open={open} message="Comentario guardado" handleClose={() => setOpen(false)} />
       <Grid container style={style.container}> 
         <Typography variant="h4" style={style.title}>

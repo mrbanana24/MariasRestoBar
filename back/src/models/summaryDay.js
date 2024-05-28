@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // Esquema principal que incluye ambos turnos y el resumen del día
 let summaryDaySchema = new Schema({
   fecha: { type: Date, required: true },
+  montoCaja: { type: Number, default: 0 },
   turnoManiana: {
     ventaTotal: { type: Number, default: 0 },
     ventaTarjeta: { type: Number, default: 0 },
