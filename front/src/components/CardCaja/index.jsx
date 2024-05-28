@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
 import RButton from "../Button";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography, Paper } from "@mui/material";
 import { saveCaja, getCajaValue } from "../../api/routes";
 
 const style = {
   container : {
     display: "flex",
+    flexDirection: "column", // Usar flexDirection para alinear los elementos en una columna
+    justifyContent: "center", // Alinea los hijos verticalmente en el centro
+    alignItems: "center", // Alinea los hijos horizontalmente en el centro
+    width: "100%"
+  },
+  paper : {
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "14vh",
-    border: "1px solid black",
-  },
+    width: "70%", // Tamaño del Paper que contiene los campos y botones
+    padding: "20px",
+  }
 }
 
 const CardCaja = () => {
@@ -46,18 +54,20 @@ const CardCaja = () => {
     <>
       <Typography variant="h4" align="center">Caja</Typography>
       <Box sx={style.container}>
-        <TextField
-          label="Caja"
-          type="number"
-          value={montoCaja}
-          onChange={(e) => setMonto(Number(e.target.value))}
-          variant="outlined"
-          disabled={!available}
-        />
-        <RButton
-          text={available ? "Guardar" : "Editar"}
-          onClick={available ? handleSave : () => setAvailable(true)}
-        />
+        <Paper elevation={3} style={style.paper}>
+          <TextField
+            label="Caja"
+            type="number"
+            value={montoCaja}
+            onChange={(e) => setMonto(Number(e.target.value))}
+            variant="outlined"
+            disabled={!available}
+          />
+          <RButton
+            text={available ? "Guardar" : "Editar"}
+            onClick={available ? handleSave : () => setAvailable(true)}
+          />
+        </Paper>
       </Box>
     </>
   );

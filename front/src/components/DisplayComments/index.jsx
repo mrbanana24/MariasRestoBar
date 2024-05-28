@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Grid, Paper, Typography, IconButton, TextField} from '@mui/material';
+import { Grid, Paper, Typography, IconButton, TextField } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import SaveIcon from '@mui/icons-material/Save';
 import { deleteComentById, editComent } from '../../api/routes';
 
-const DisplayComments = ({ comments, setComments}) => {
-
+const DisplayComments = ({ comments, setComments }) => {
   const [editComentId, setEditComentId] = useState(null);
   const [editFormData, setEditFormData] = useState({ comentarios: '', gasto: 0 });
 
@@ -53,14 +52,10 @@ const DisplayComments = ({ comments, setComments}) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      height: 'auto',
-      width: '90%',
       padding: '1%',
-      margin: 'auto',
       textAlign: 'center',
       marginBottom: '1%',
-      wordWrap: 'break-word',
-      overflow: 'hidden'
+      wordWrap: 'break-word'
     },
     inputStyle: {
       width: '100%',
@@ -71,11 +66,17 @@ const DisplayComments = ({ comments, setComments}) => {
       display: 'flex',
       justifyContent: 'flex-end',
       marginTop: '10px'
+    },
+    commentsContainer: {
+      height: '60vh', 
+      overflowY: 'auto',
+      padding: '20px',
+      width: '100%' 
     }
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} style={style.commentsContainer}>
       {comments.map((comment) => (
         <Grid item xs={12} key={comment._id}>
           <Paper elevation={3} style={style.stylePaper}>

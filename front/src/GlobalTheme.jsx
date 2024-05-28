@@ -15,7 +15,7 @@ const theme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      default: '#eaeff1',
+      default: '#fee',
       paper: '#fff',
     },
     text: {
@@ -30,7 +30,7 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)', // Sombra suave para los papeles
+          boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
         },
       },
     },

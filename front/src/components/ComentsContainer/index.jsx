@@ -61,7 +61,6 @@ const ComentsContainer = ({onAddComment, today}) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <CardCaja />
       <CustomizedSnackbars open={open} message="Comentario guardado" handleClose={() => setOpen(false)} />
       <Grid container style={style.container}> 
         <Typography variant="h4" style={style.title}>

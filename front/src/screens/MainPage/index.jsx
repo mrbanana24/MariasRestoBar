@@ -6,6 +6,7 @@ import Table from "../../components/Table";
 import DisplayTables from "../../components/DisplayTables";
 import ComentsContainer from "../../components/ComentsContainer";
 import DisplayComments from "../../components/DisplayComments";
+import CardCaja from "../../components/CardCaja";
 
 const MainPage = () => {
   const [allTables, setTables] = useState([]);
@@ -59,10 +60,9 @@ const MainPage = () => {
 
         {/* Second part of screen*/}
         <Grid item xs={4}>
-          {/* Contenedor de comentarios */}
+          <CardCaja />
+          <Box sx={{ height: "1vh" }} />
           <ComentsContainer onAddComment={addComment} today={today}/>
-          {/* Espacio entre componentes */}
-          <Box sx={{ height: "2%" }} />
           <DisplayComments comments={allComments} setComments={setComments} />
         </Grid>
 
