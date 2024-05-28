@@ -47,7 +47,7 @@ module.exports = router;
 
 // /-------------------------------------/ ROUTES SUMMARYDAYS /-------------------------------------/
 // getSummaryDayByDate
-router.get('/getSummaryDayByDate', SummaryDaysController.getSummaryDayByDate )
+router.post('/getSummaryDayByDate', SummaryDaysController.getSummaryDayByDate )
 
 // putSummaryDay
 router.put('/putSummaryDay', SummaryDaysController.putSummaryDay )

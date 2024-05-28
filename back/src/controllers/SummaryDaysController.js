@@ -4,7 +4,8 @@ class SummaryDaysController {
     
     static async getSummaryDayByDate(req, res) {
         try {
-            const summaryDay = await SummaryDaysServices.getSummaryDayByDate();
+            const {date} = req.body;
+            const summaryDay = await SummaryDaysServices.getSummaryDayByDate(date);
             res.status(200).json(summaryDay);
         } catch (error) {
             res.status(500).json(error.message);
