@@ -15,7 +15,7 @@ const style = {
   paper: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     textAlign: 'center',
     wordWrap: 'break-word',
     height: "100%",
@@ -27,7 +27,8 @@ const style = {
     backgroundColor: "#008aa2",
     color: "#fff", 
     padding: "5px",
-    borderRadius: "100px"
+    borderRadius: "100px",
+    textTransform: "uppercase",
   },
   dataRow: {
     display: 'flex',
@@ -44,8 +45,7 @@ const CardSummaryDaysVales = ({data}) => {
   return(
     <Box sx={style.container}>
       <Paper elevation={3} style={style.paper}>
-      <Typography variant="h6" style={style.section}>Vales o gastos</Typography>
-        {/* Por cada elemento del data */}
+        <Typography variant="h6" style={style.section}>Vales o gastos</Typography>
         {data.map((item, index) => (
           <div key={index} style={style.dataRow}>
             <Typography>{item.comentarios}</Typography>

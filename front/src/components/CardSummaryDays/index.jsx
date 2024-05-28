@@ -27,7 +27,8 @@ const style = {
     backgroundColor: "#008aa2",
     color: "#fff", 
     padding: "5px",
-    borderRadius: "100px"
+    borderRadius: "100px",
+    textTransform: "uppercase",
   },
   dataRow: {
     display: 'flex',
