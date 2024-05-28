@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CardSummaryDays from '../../components/CardSummaryDays';
+import CardSummaryDaysVales from '../../components/CardSummaryDaysVales';
 import Header from '../../components/Header'
 import { Box, Grid } from "@mui/material";
 
@@ -30,9 +31,8 @@ const SummaryDays = () => {
         <Box sx={{ flexGrow: 1 }}>
             <Header />
             <Grid container sx={{ minHeight: "100vh" }}>
-                <CardSummaryDays
-                    data={data}
-                />
+                <CardSummaryDays data={data}/>
+                <CardSummaryDaysVales/>
             </Grid>
         </Box>
       );

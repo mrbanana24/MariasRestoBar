@@ -20,7 +20,7 @@ const style = {
     wordWrap: 'break-word',
     height: "100%",
     width: "100%",
-    padding: "10px"  
+    padding: "10px",
   },
   section: {
     margin: "10px 0",
@@ -38,7 +38,7 @@ const style = {
 }
 
 const CardSummaryDays = ({data}) => {
-  if (!data) return null;
+  if (!data) return 'No hay resumen para mostrar';
 
   return(
     <Box sx={style.container}>
