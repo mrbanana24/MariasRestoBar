@@ -46,7 +46,7 @@ const SummaryDays = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Header />
-            <Grid container sx={{ minHeight: "100vh" }}>
+            <Grid container sx={{ minHeight: "100vh", display:"flex", justifyContent:"center" }}>
                 <CardSummaryDays data={data}/>
                 <CardSummaryDaysVales data={dataVales}/>
             </Grid>

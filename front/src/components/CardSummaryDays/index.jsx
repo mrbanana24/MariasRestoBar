@@ -15,7 +15,7 @@ const style = {
   paper: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     textAlign: 'center',
     wordWrap: 'break-word',
     height: "100%",
