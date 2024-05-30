@@ -39,6 +39,15 @@ class SummaryDaysController {
             res.status(500).json(error.message);
         }
     }
+
+    static async getSummaryMonthData(req, res) {
+        try {
+            const summaryMonthData = await SummaryDaysServices.getSummaryMonthData();
+            res.status(200).json(summaryMonthData);
+        } catch (error) {
+            res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = SummaryDaysController;

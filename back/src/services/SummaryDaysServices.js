@@ -159,6 +159,54 @@ class SummaryDaysServices {
         }
     }
 
+    static async getSummaryMonthData() {
+        try {
+            const startOfMonth = new Date();
+            startOfMonth.setDate(1);
+            startOfMonth.setHours(0, 0, 0, 0);
+
+            const endOfMonth = new Date(startOfMonth);
+            endOfMonth.setMonth(endOfMonth.getMonth() + 1);
+            endOfMonth.setDate(0);
+            endOfMonth.setHours(23, 59, 59, 999);
+
+            const summaryData = await SummaryDay.find({
+                fecha: {
+                    $gte: startOfMonth,
+                    $lt: endOfMonth
+                }
+            }).sort('fecha');
+
+            return summaryData.map(dayData => {
+                const day = dayData.fecha.getDate();
+                const sales = dayData.resumenDelDia.ventaTotalDia;
+                const cashSales = dayData.resumenDelDia.ventaEfectivoDia;
+                const cardSales = dayData.resumenDelDia.ventaTarjetaDia;
+                const cashSaved = dayData.turnoManiana.totalEfectivoNeto + dayData.turnoNoche.totalEfectivoNeto;
+                
+                // Calcular los valores acumulados
+                const accumulatedIndex = summaryData.indexOf(dayData);
+                const salesAccumulated = summaryData.slice(0, accumulatedIndex + 1).reduce((acc, item) => acc + item.resumenDelDia.ventaTotalDia, 0);
+                const cashAccumulated = summaryData.slice(0, accumulatedIndex + 1).reduce((acc, item) => acc + item.resumenDelDia.ventaEfectivoDia, 0);
+                const cardAccumulated = summaryData.slice(0, accumulatedIndex + 1).reduce((acc, item) => acc + item.resumenDelDia.ventaTarjetaDia, 0);
+                
+                return {
+                    day: `Day ${day}`,
+                    sales,
+                    salesAccumulated,
+                    cashSales,
+                    cashAccumulated,
+                    cardSales,
+                    cardAccumulated,
+                    cashSaved
+                };
+            });
+        } catch (error) {
+            console.error('Error fetching summary month data:', error);
+            throw error;
+        }
+    }
+
 }
 
 

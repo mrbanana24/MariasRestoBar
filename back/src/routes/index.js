@@ -45,7 +45,7 @@ router.post('/editComment', CommentsController.editComment)
 
 module.exports = router;
 
-// /-------------------------------------/ ROUTES SUMMARYDAYS /-------------------------------------/
+// /-------------------------------------/ ROUTES SUMMARY /-------------------------------------/
 // getSummaryDayByDate
 router.post('/getSummaryDayByDate', SummaryDaysController.getSummaryDayByDate )
 
@@ -57,3 +57,6 @@ router.post('/saveCaja', SummaryDaysController.saveCaja )
 
 // getCajaValue
 router.get('/getCajaValue', SummaryDaysController.getCajaValue )
+
+// getSummaryCurrentMonth
+router.get('/getSummaryMonthData', SummaryDaysController.getSummaryMonthData)

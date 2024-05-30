@@ -71,6 +71,15 @@ export const summaryDayByDate = async (date) => {
   }
 }
 
+// Get summary current month
+export const getSummaryMonthData = async () => {
+  try {
+    const response = await axios.get('http://localhost:8000/getSummaryMonthData')
+    return response
+  } catch (error) {
+    throw error
+  }
+}
 // /-------------------------------------///////////////-------------------------------------/
 
 

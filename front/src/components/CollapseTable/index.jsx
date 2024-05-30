@@ -7,31 +7,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-// Función para crear datos de ejemplo
-function createData(day, sales, salesAccumulated, cashSales, cashAccumulated, cardSales, cardAccumulated, cashSaved) {
-  return { day, sales, salesAccumulated, cashSales, cashAccumulated, cardSales, cardAccumulated, cashSaved };
-}
-
-// Generar filas para los 31 días
-const rows = Array.from({ length: 31 }, (_, index) => createData(
-  `Day ${index + 1}`, 
-  Math.floor(Math.random() * 300 + 100), 
-  Math.floor(Math.random() * 1000 + 500), 
-  Math.floor(Math.random() * 300 + 100), 
-  Math.floor(Math.random() * 1000 + 500),
-  Math.floor(Math.random() * 300 + 100), 
-  Math.floor(Math.random() * 1000 + 500),
-  Math.floor(Math.random() * 300 + 100)
-));
-
-export default function BasicTable() {
+export default function BasicTable({data}) {
   return (
     <TableContainer component={Paper} sx={{
       margin: '20px',  
       borderRadius: '15px', 
       boxShadow: '0px 6px 18px rgba(0,0,0,0.4)', 
-      maxHeight: '90vh', 
-      overflow: 'auto'  
+      height: '90vh',
+      overflow: 'auto'
     }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -47,21 +30,21 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data && data.map((summaryDay) => (
             <TableRow
-              key={row.day}
+              key={summaryDay.day}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.day}
+                {summaryDay.day}
               </TableCell>
-              <TableCell align="right">{row.sales}</TableCell>
-              <TableCell align="right">{row.salesAccumulated}</TableCell>
-              <TableCell align="right">{row.cashSales}</TableCell>
-              <TableCell align="right">{row.cashAccumulated}</TableCell>
-              <TableCell align="right">{row.cardSales}</TableCell>
-              <TableCell align="right">{row.cardAccumulated}</TableCell>
-              <TableCell align="right">{row.cashSaved}</TableCell>
+              <TableCell align="right">{summaryDay.sales}</TableCell>
+              <TableCell align="right">{summaryDay.salesAccumulated}</TableCell>
+              <TableCell align="right">{summaryDay.cashSales}</TableCell>
+              <TableCell align="right">{summaryDay.cashAccumulated}</TableCell>
+              <TableCell align="right">{summaryDay.cardSales}</TableCell>
+              <TableCell align="right">{summaryDay.cardAccumulated}</TableCell>
+              <TableCell align="right">{summaryDay.cashSaved}</TableCell>
             </TableRow>
           ))}
         </TableBody>
