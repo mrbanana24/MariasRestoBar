@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { saveComment } from "../../api/routes";
 import {useState} from "react";
 import CustomizedSnackbars  from "../../components/Snackbar";
-import CardCaja from "../CardCaja";
 
 const style = {
   container: {
@@ -16,6 +15,8 @@ const style = {
     marginTop: "0",
     height: "80%",
     width: "70%",
+    display:"flex",
+    flexDirection: "column",
   },
   title: {
     margin: "auto",
@@ -66,11 +67,11 @@ const ComentsContainer = ({onAddComment, today}) => {
         <Typography variant="h4" style={style.title}>
           Comentarios
         </Typography>
-        <Paper elevation={3} style={style.cardStyle}>
-          <Button variant="contained" type="submit" style={style.button}>
-            Agregar
-          </Button>
-          <Grid item>
+        <Button variant="contained" type="submit" style={style.button}>
+          Agregar
+        </Button>
+        <Grid container style={style.cardStyle}>
+          <Grid item sx={{marginBottom: 1}}>
             {/* Input para texto */}
             <TextField
               name="coments"
@@ -87,6 +88,7 @@ const ComentsContainer = ({onAddComment, today}) => {
               inputProps={{ maxLength: 50 }}
             />
           </Grid>
+
           <Grid item>
             {/* Input para el gasto */}
             <TextField
@@ -101,7 +103,7 @@ const ComentsContainer = ({onAddComment, today}) => {
               defaultValue={0}
             />
           </Grid>
-        </Paper>
+        </Grid>
       </Grid>
     </form>
   );
