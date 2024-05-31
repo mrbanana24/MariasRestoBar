@@ -4,22 +4,25 @@ import { Box, TextField, Typography, Paper, Grid } from "@mui/material";
 import { saveCaja, getCajaValue } from "../../api/routes";
 
 const style = {
-  container : {
+  containerFather: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center", 
-    width: "100%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: "0.5rem",
+    boxShadow: "-0.7px 1px 0px 0px #ccc",
+    paddingBottom: "2rem",
     marginBottom: "1rem",
     marginTop: "0.7rem",
-    boxShadow: "-0.7px 1px 0px 0px #ccc",
-    backgroundColor: "#FFFFFF",
-    paddingBottom: "2rem",
-    borderRadius: "0.5rem",
+  },
+  container : {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
     backgroundColor: "green",
     marginBottom: "0.5rem",
+    marginLeft: "1rem",
   },
 }
 
@@ -55,13 +58,9 @@ const CardCaja = () => {
 
   return (
     <>
+    <Box sx={style.containerFather}>
+      <Typography variant="h5" align="center">Caja</Typography>
       <Box sx={style.container}>
-        <Typography variant="h4" align="center">Caja</Typography>
-        <RButton
-          text={available ? "Guardar" : "Editar"}
-          onClick={available ? handleSave : () => setAvailable(true)}
-          extraStyle={style.button}
-        />
         <TextField
           label="Caja"
           type="number"
@@ -70,7 +69,13 @@ const CardCaja = () => {
           variant="outlined"
           disabled={!available}
         />
+        <RButton
+          text={available ? "Guardar" : "Editar"}
+          onClick={available ? handleSave : () => setAvailable(true)}
+          extraStyle={style.button}
+        />
       </Box>
+    </Box>
     </>
   );
 }

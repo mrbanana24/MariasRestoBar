@@ -69,7 +69,7 @@ const ComentsContainer = ({onAddComment, today}) => {
     <form onSubmit={formik.handleSubmit}>
       <CustomizedSnackbars open={open} message="Comentario guardado" handleClose={() => setOpen(false)} />
       <Grid container style={style.container}> 
-        <Typography variant="h4" style={style.title}>
+        <Typography variant="h5" style={style.title}>
           Comentarios
         </Typography>
         <Button variant="contained" type="submit" style={style.button}>
