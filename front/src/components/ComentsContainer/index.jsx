@@ -32,7 +32,7 @@ const style = {
     margin: "auto",
     marginTop: "1%",
     marginBottom: "2%",
-    backgroundColor: "green",
+    backgroundColor: "#008aa2",
     color: "white",
     width: "50%",
     display: "block",

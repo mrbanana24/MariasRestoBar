@@ -38,7 +38,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none', // Evita mayúsculas automáticas en los botones
-          backgroundColor: '#1976d2',
         },
         contained: {
           boxShadow: 'none',

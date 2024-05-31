@@ -24,7 +24,7 @@ const style = {
   },
   section: {
     margin: "10px 0",
-    backgroundColor: "green",
+    backgroundColor: "#008aa2",
     color: "#fff", 
     padding: "5px",
     borderRadius: "100px",
