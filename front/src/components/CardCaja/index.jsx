@@ -28,13 +28,12 @@ const style = {
 
 const CardCaja = () => {
   const [montoCaja, setMonto] = useState(0);
-  const [available, setAvailable] = useState(true);
+  const [isEditable, setIsEditable] = useState(true);
 
   useEffect(() => {
     const fetchCaja = async () => {
       try {
         const response = await getCajaValue();
-        console.log('Error en el fetchCaja', response.status);
         if (response.status === 200) {
           setMonto(response.data);
         }
@@ -48,12 +47,16 @@ const CardCaja = () => {
   const handleSave = async () => {
     try {
       const response = await saveCaja(Number(montoCaja));
-      if (response.status === 200) {
-        setAvailable(false);
+      if (response.status === 201) {
+        setIsEditable(false);
       }
     } catch (error) {
       console.log('Error en el handleSave', error);
     }
+  }
+
+  const handleEdit = () => {
+    setIsEditable(true);
   }
 
   return (
@@ -61,17 +64,20 @@ const CardCaja = () => {
     <Box sx={style.containerFather}>
       <Typography variant="h5" align="center">Caja</Typography>
       <Box sx={style.container}>
-        <TextField
-          label="Caja"
-          type="number"
-          value={montoCaja}
-          onChange={(e) => setMonto(Number(e.target.value))}
-          variant="outlined"
-          disabled={!available}
-        />
+        {isEditable ? (
+          <TextField
+            label="Caja"
+            type="number"
+            value={montoCaja}
+            onChange={(e) => setMonto(Number(e.target.value))}
+            variant="outlined"
+          />
+        ) : (
+          <Typography variant="h6">{`$${montoCaja}`}</Typography>
+        )}
         <RButton
-          text={available ? "Guardar" : "Editar"}
-          onClick={available ? handleSave : () => setAvailable(true)}
+          text={isEditable ? "Guardar" : "Editar"}
+          onClick={isEditable ? handleSave : handleEdit}
           extraStyle={style.button}
         />
       </Box>

@@ -2,7 +2,7 @@ import { Grid, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getTablesByDate, getCommentsByDate } from "../../api/routes";
 import Header from "../../components/Header";
-import Table from "../../components/Table";
+import Table from "../../components/ModelTable";
 import DisplayTables from "../../components/DisplayTables";
 import ComentsContainer from "../../components/ComentsContainer";
 import DisplayComments from "../../components/DisplayComments";

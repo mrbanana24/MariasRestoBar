@@ -7,6 +7,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+// Helper function to format numbers as currency
+const formatCurrency = (number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(number);
+};
+
 export default function BasicTable({data}) {
   return (
     <TableContainer component={Paper} sx={{
@@ -38,13 +46,13 @@ export default function BasicTable({data}) {
               <TableCell component="th" scope="row">
                 {summaryDay.day}
               </TableCell>
-              <TableCell align="right">{summaryDay.sales}</TableCell>
-              <TableCell align="right">{summaryDay.salesAccumulated}</TableCell>
-              <TableCell align="right">{summaryDay.cashSales}</TableCell>
-              <TableCell align="right">{summaryDay.cashAccumulated}</TableCell>
-              <TableCell align="right">{summaryDay.cardSales}</TableCell>
-              <TableCell align="right">{summaryDay.cardAccumulated}</TableCell>
-              <TableCell align="right">{summaryDay.cashSaved}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.sales)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.salesAccumulated)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.cashSales)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.cashAccumulated)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.cardSales)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.cardAccumulated)}</TableCell>
+              <TableCell align="right">{formatCurrency(summaryDay.cashSaved)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

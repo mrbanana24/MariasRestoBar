@@ -55,6 +55,10 @@ const DisplayTables = ({ tables, setTables }) => {
     setEditFormData({ ...editFormData, [prop]: value });
   };
 
+  const formatCurrency = (value) => {
+    return `$${Number(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+  }
+
   const style = {
     stylePaper: {
       display: 'flex',
@@ -80,7 +84,7 @@ const DisplayTables = ({ tables, setTables }) => {
     <Grid container>
       <CustomizedSnackbars
         open={open}
-        message= {message} 
+        message={message} 
         handleClose={() => setOpen(false)}
       />
       {tables.map((table) => (
@@ -88,7 +92,7 @@ const DisplayTables = ({ tables, setTables }) => {
           {editTableId === table._id ? (
             <>
               <TextField value={editFormData.numMesa} onChange={(e) => handleInputChange('numMesa', e.target.value)} />
-              <TextField value={editFormData.monto} onChange={(e) => handleInputChange('monto', e.target.value)} />
+              <TextField value={formatCurrency(editFormData.monto)} onChange={(e) => handleInputChange('monto', e.target.value)} />
               <FormControl fullWidth>
                 <InputLabel>Estado de Pago</InputLabel>
                 <Select
@@ -98,30 +102,30 @@ const DisplayTables = ({ tables, setTables }) => {
                 >
                   <MenuItem value="Efectivo">Efectivo</MenuItem>
                   <MenuItem value="Tarjeta">Tarjeta</MenuItem>
-                  <MenuItem value="Mercado Pago">Mercado Pago</MenuItem>
-                </Select>
+                  <MenuItem value="Mercado Pago">Mercado Pago</MenuItem
+                ></Select>
               </FormControl>
-              <TextField value={editFormData.propina} onChange={(e) => handleInputChange('propina', e.target.value)} />
+              <TextField value={formatCurrency(editFormData.propina)} onChange={(e) => handleInputChange('propina', e.target.value)} />
             </>
           ) : (
             <>
               <Grid container>
                 <Grid item xs={3}>
                   <Typography variant="h6">{table.numMesa}</Typography>
-                  <Typography variant="caption">N de mesa</Typography>
-                </Grid>
+                  <Typography variant="caption">N de mesa</Typography
+                ></Grid>
                 <Grid item xs={3}>
-                  <Typography variant="h6">{table.monto}</Typography>
-                  <Typography variant="caption">Monto</Typography>
-                </Grid>
+                  <Typography variant="h6">{formatCurrency(table.monto)}</Typography>
+                  <Typography variant="caption">Monto</Typography
+                ></Grid>
                 <Grid item xs={3}>
                   <Typography variant="h6">{table.estadoPago}</Typography>
-                  <Typography variant="caption">Estado de pago</Typography>
-                </Grid>
+                  <Typography variant="caption">Estado de pago</Typography
+                ></Grid>
                 <Grid item xs={3}>
-                  <Typography variant="h6">{table.propina}</Typography>
-                  <Typography variant="caption">Propina</Typography>
-                </Grid>
+                  <Typography variant="h6">{formatCurrency(table.propina)}</Typography>
+                  <Typography variant="caption">Propina</Typography
+                ></Grid>
               </Grid>
             </>
 
