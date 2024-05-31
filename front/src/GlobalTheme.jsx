@@ -15,11 +15,11 @@ const theme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      default: '#fee',
-      paper: '#fff',
+      default: '#efefef',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#173A5E',
+      primary: '#000000',
       secondary: '#46505A',
     },
     action: {
@@ -38,6 +38,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none', // Evita mayúsculas automáticas en los botones
+          backgroundColor: '#1976d2',
         },
         contained: {
           boxShadow: 'none',

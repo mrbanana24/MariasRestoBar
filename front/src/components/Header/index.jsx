@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{backgroundColor:'#1976d2'}}>
         <Toolbar>
           <Button onClick={() => navigate('/')} color="inherit" sx={{ marginRight: 'auto' }}>Mesas</Button>
           <Button onClick={() => navigate('/resumenDia')} color="inherit" sx={{ marginRight: 'auto' }}>Resumen Dia</Button>

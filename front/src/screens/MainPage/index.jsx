@@ -59,9 +59,8 @@ const MainPage = () => {
         </Grid>
 
         {/* Second part of screen*/}
-        <Grid item xs={4}>
+        <Grid item xs={4} sx={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center'}}>
           <CardCaja />
-          <Box sx={{ height: "1vh" }} />
           <ComentsContainer onAddComment={addComment} today={today}/>
           <DisplayComments comments={allComments} setComments={setComments} />
         </Grid>

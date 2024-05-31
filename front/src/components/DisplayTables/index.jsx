@@ -64,6 +64,7 @@ const DisplayTables = ({ tables, setTables }) => {
       margin: 'auto',
       textAlign: 'center',
       marginBottom: '1%',
+      borderRadius: "0.5rem",
     },
     gridItem: {
       color: 'grey'

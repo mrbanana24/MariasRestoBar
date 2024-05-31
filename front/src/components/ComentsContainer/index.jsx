@@ -9,6 +9,12 @@ const style = {
     display: "flex",
     height: "30%",
     flexDirection: "column",
+    paddingBottom: "7%",
+    marginBottom: "1rem",
+    backgroundColor: "#FFFFFF",
+    borderRadius: "0.5rem",
+    // border shadow abajo y a la izquierda
+    boxShadow: "-0.7px 1px 0px 0px #ccc",
   },
   cardStyle: {
     margin: "auto",
@@ -22,7 +28,6 @@ const style = {
     margin: "auto",
     color: "black",
   },
-
   button: {
     margin: "auto",
     marginTop: "1%",

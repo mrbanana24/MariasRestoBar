@@ -116,7 +116,7 @@ const Table = ({ onAddTable, today }) => {
             />
           </Grid>
           <Grid item xs={12} sm={2}>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" sx={{backgroundColor:'green'}}>
               Agregar
             </Button>
           </Grid>
